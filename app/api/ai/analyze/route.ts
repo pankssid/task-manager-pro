@@ -47,9 +47,9 @@ export async function POST(request: NextRequest) {
 
     // Peak hours estimation based on creation times
     const hours = tasks.map((t: Task) => new Date(t.createdAt).getHours());
-    const morningTasks = hours.filter((h) => h >= 6 && h < 12).length;
-    const afternoonTasks = hours.filter((h) => h >= 12 && h < 18).length;
-    const eveningTasks = hours.filter((h) => h >= 18 || h < 6).length;
+    const morningTasks = hours.filter((h: number) => h >= 6 && h < 12).length;
+    const afternoonTasks = hours.filter((h: number) => h >= 12 && h < 18).length;
+    const eveningTasks = hours.filter((h: number) => h >= 18 || h < 6).length;
 
     let peakHours = '🌅 Morning';
     if (afternoonTasks > morningTasks && afternoonTasks > eveningTasks) {
